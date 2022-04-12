@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>like dislike</title>
+  </head>
+  <body>
+    <style>
+      :root {
+        --dot-color: #74b855;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1) translateZ(0px);
+        }
+        100% {
+          transform: scale(1.1) translateZ(0px);
+        }
+      }
+      .feedback-dot {
+        width: 35px;
+        height: 35px;
+        border-radius: 20px;
+        background-color: var(--dot-color);
+
+        animation-name: pulse;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: forwards;
+        transform: translateZ(0px);
+
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .feedback-dot:hover {
+        width: min-content;
+        height: min-content;
+        animation: none;
+        padding: 15px 20px;
+      }
+      .fbd-container {
+        display: none;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .fbd-question {
+        margin: 6px 0 4px;
+      }
+      .fbd-ask,
+      .fbd-question {
+        white-space: nowrap;
+      }
+      .fbd-ask {
+        color: white;
+      }
+      .fbd-question {
+        font-weight: 700;
+      }
+      .fbd-answers {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .fbd-like,
+      .fbd-dislike,
+      .fbd-extra {
+        white-space: nowrap;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin: 0 3px;
+      }
+      .fbd-bold {
+        font-weight: 700;
+      }
+      .fbd-extra-link {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-duration"
+      style="position: absolute; top: 50px; left: 50px"
+      onmouseover="this.querySelector('#fbd-duration-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-duration-container').style.display = 'none';"
+    >
+      <div id="fbd-duration-container" class="fbd-container">
+        <div id="fbd-duration-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-duration-question" class="fbd-question">Do you like duration of the bootcamp?</div>
+        <div id="fbd-duration-answers" class="fbd-answers">
+          <div id="fbd-duration-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 works for me</div>
+          <div id="fbd-duration-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 too long</div>
+          <div id="fbd-duration-extra" class="fbd-extra"></div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-price"
+      style="position: absolute; top: 150px; left: 50px"
+      onmouseover="this.querySelector('#fbd-price-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-price-container').style.display = 'none';"
+    >
+      <div id="fbd-price-container" class="fbd-container">
+        <div id="fbd-price-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-price-question" class="fbd-question">What do you think about our price?</div>
+        <div id="fbd-price-answers" class="fbd-answers">
+          <div id="fbd-price-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 works for me</div>
+          <div id="fbd-price-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 too high</div>
+          <div id="fbd-price-extra" class="fbd-extra"></div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-projects"
+      style="position: absolute; top: 250px; left: 50px"
+      onmouseover="this.querySelector('#fbd-projects-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-projects-container').style.display = 'none';"
+    >
+      <div id="fbd-projects-container" class="fbd-container">
+        <div id="fbd-projects-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-projects-question" class="fbd-question">Projects with real companies are...</div>
+        <div id="fbd-projects-answers" class="fbd-answers">
+          <div id="fbd-projects-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 important for me</div>
+          <div id="fbd-projects-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 not important</div>
+          <div id="fbd-projects-extra" class="fbd-extra"></div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-codereview"
+      style="position: absolute; top: 350px; left: 50px"
+      onmouseover="this.querySelector('#fbd-codereview-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-codereview-container').style.display = 'none';"
+    >
+      <div id="fbd-codereview-container" class="fbd-container">
+        <div id="fbd-codereview-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-codereview-question" class="fbd-question">Detailed code review is...</div>
+        <div id="fbd-codereview-answers" class="fbd-answers">
+          <div id="fbd-codereview-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 important for me</div>
+          <div id="fbd-codereview-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 not important</div>
+        </div>
+        <div id="fbd-codereview-extra" class="fbd-extra" title="code review">
+          <a class="fbd-extra-link" target="_blank" href="https://www.practicum.blog/posts/what-is-code-review-how-it-works-and-how-to-ace-your-next-review">🤔 What is a "code review"?</a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-schedule"
+      style="position: absolute; top: 450px; left: 50px"
+      onmouseover="this.querySelector('#fbd-schedule-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-schedule-container').style.display = 'none';"
+    >
+      <div id="fbd-schedule-container" class="fbd-container">
+        <div id="fbd-schedule-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-schedule-question" class="fbd-question">What do you think about our schedule?</div>
+        <div id="fbd-schedule-answers" class="fbd-answers">
+          <div id="fbd-schedule-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 works for me</div>
+          <div id="fbd-schedule-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 I need self-paced</div>
+          <div id="fbd-schedule-dislike-2" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 I need strict schedule</div>
+        </div>
+        <div id="fbd-schedule-extra" class="fbd-extra">
+          <a class="fbd-extra-link" target="_blank" href="">🤔 Sprints? How you learning schedule works again?</a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-syllebus"
+      style="position: absolute; top: 550px; left: 50px"
+      onmouseover="this.querySelector('#fbd-syllebus-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-syllebus-container').style.display = 'none';"
+    >
+      <div id="fbd-syllebus-container" class="fbd-container">
+        <div id="fbd-syllebus-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-syllebus-question" class="fbd-question">Do you like our syllabus?</div>
+        <div id="fbd-syllebus-answers" class="fbd-answers">
+          <div id="fbd-syllebus-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 looks great</div>
+          <div id="fbd-syllebus-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 it missing topics that I need</div>
+        </div>
+        <div id="fbd-syllebus-extra" class="fbd-extra"></div>
+      </div>
+    </div>
+    <div
+      class="feedback-dot"
+      id="feedback-dot-employment"
+      style="position: absolute; top: 650px; left: 50px"
+      onmouseover="this.querySelector('#fbd-employment-container').style.display = 'flex';"
+      onmouseout="this.querySelector('#fbd-employment-container').style.display = 'none';"
+    >
+      <div id="fbd-employment-container" class="fbd-container">
+        <div id="fbd-employment-ask" class="fbd-ask">Help us make the product better</div>
+        <div id="fbd-employment-question" class="fbd-question">Do you need help with employment after bootcamp?</div>
+        <div id="fbd-employment-answers" class="fbd-answers">
+          <div id="fbd-employment-like" class="fbd-like" onclick="this.classList.toggle('fbd-bold')">👍 yes, definitely!</div>
+          <div id="fbd-employment-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold')">👎 no, thanks</div>
+        </div>
+        <div id="fbd-employment-extra" class="fbd-extra"></div>
+      </div>
+    </div>
+  </body>
+</html>
