@@ -1,301 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>feedback dots</title>
-  </head>
-  <body>
-    <style>
-      :root {
-        --dot-color: #74b855;
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1) translateZ(0px);
-        }
-        100% {
-          transform: scale(1.1) translateZ(0px);
-        }
-      }
-      .feedback-dot {
-        width: 35px;
-        height: 35px;
-        border-radius: 20px;
-        background-color: var(--dot-color);
 
-        animation-name: pulse;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-delay: 0s;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-        animation-fill-mode: forwards;
-        transform: translateZ(0px);
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>feedback dots</title>
+</head>
 
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      .feedback-dot:hover {
-        width: min-content;
-        height: min-content;
-        animation: none;
-        padding: 15px 20px;
-      }
-      .fbd-container {
-        display: none;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      .fbd-question {
-        margin: 6px 0 4px;
-      }
-      .fbd-ask,
-      .fbd-question {
-        white-space: nowrap;
-      }
-      .fbd-ask {
-        color: white;
-      }
-      .fbd-question {
-        font-weight: 700;
-      }
-      .fbd-answers {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-        width: 100%;
-      }
-      .fbd-like,
-      .fbd-dislike,
-      .fbd-extra {
-        white-space: nowrap;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        margin: 0 3px;
-      }
-      .fbd-bold {
-        font-weight: 700;
-      }
-      .fbd-extra-link {
-        color: black;
-        text-decoration: none;
-      }
-    </style>
+<body>
+  <style>
+    :root {
+      --dot-color: #74b855;
+    }
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-duration"
-      style="position: absolute; top: 50px; left: 50px"
-      onmouseover="this.querySelector('#fbd-duration-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-duration-container').style.display = 'none';"
-    >
-      <div id="fbd-duration-container" class="fbd-container">
-        <div id="fbd-duration-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-duration-question" class="fbd-question">What do you think of the duration of the bootcamp?</div>
-        <div id="fbd-duration-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-duration-like"
-            data-state=""
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ works for me'; this.dataset.state = '1'} else {this.innerText = '👍 works for me'; this.dataset.state = ''}"
-          >
-            👍 works for me
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-duration-dislike"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ too long'; this.dataset.state = '1'} else {this.innerText = '👎 too long'; this.dataset.state = ''}"
-          >
-            👎 too long
-          </div>
+    @keyframes pulse {
+      0% {
+        transform: scale(1) translateZ(0px);
+      }
+
+      100% {
+        transform: scale(1.1) translateZ(0px);
+      }
+    }
+
+    .feedback-dot {
+      width: 35px;
+      height: 35px;
+      border-radius: 20px;
+      background-color: var(--dot-color);
+
+      animation-name: pulse;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-fill-mode: forwards;
+      transform: translateZ(0px);
+
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .feedback-dot:hover {
+      width: min-content;
+      height: min-content;
+      animation: none;
+      padding: 15px 20px;
+    }
+
+    .fbd-container {
+      display: none;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .fbd-question {
+      margin: 6px 0 4px;
+    }
+
+    .fbd-ask,
+    .fbd-question {
+      white-space: nowrap;
+    }
+
+    .fbd-ask {
+      color: white;
+    }
+
+    .fbd-question {
+      font-weight: 700;
+    }
+
+    .fbd-answers {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    .fbd-like,
+    .fbd-dislike,
+    .fbd-extra {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin: 0 3px;
+    }
+
+    .fbd-bold {
+      font-weight: 700;
+    }
+
+    .fbd-extra-link {
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+
+  <div class="feedback-dot" id="feedback-dot-duration" style="position: absolute; top: 50px; left: 50px"
+    onmouseover="this.querySelector('#fbd-duration-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-duration-container').style.display = 'none';">
+    <div id="fbd-duration-container" class="fbd-container">
+      <div id="fbd-duration-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-duration-question" class="fbd-question">What do you think of the duration of the bootcamp?</div>
+      <div id="fbd-duration-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-duration-like" data-state=""
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ works for me'; this.dataset.state = '1'} else {this.innerText = '👍 works for me'; this.dataset.state = ''}">
+          👍 works for me
+        </div>
+        <div class="fbd-dislike" id="fbd-duration-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ too long'; this.dataset.state = '1'} else {this.innerText = '👎 too long'; this.dataset.state = ''}">
+          👎 too long
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-price"
-      style="position: absolute; top: 150px; left: 50px"
-      onmouseover="this.querySelector('#fbd-price-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-price-container').style.display = 'none';"
-    >
-      <div id="fbd-price-container" class="fbd-container">
-        <div id="fbd-price-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-price-question" class="fbd-question">What do you think of our price?</div>
-        <div id="fbd-price-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-price-like"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ works for me'; this.dataset.state = '1'} else {this.innerText = '👍 works for me'; this.dataset.state = ''}"
-          >
-            👍 works for me
-          </div>
-          <div id="fbd-price-dislike" class="fbd-dislike" onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ too long'; this.dataset.state = '1'} else {this.innerText = '👎 too long'; this.dataset.state = ''}">
-            👎 too high
-          </div>
+  <div class="feedback-dot" id="feedback-dot-price" style="position: absolute; top: 150px; left: 50px"
+    onmouseover="this.querySelector('#fbd-price-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-price-container').style.display = 'none';">
+    <div id="fbd-price-container" class="fbd-container">
+      <div id="fbd-price-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-price-question" class="fbd-question">What do you think of our price?</div>
+      <div id="fbd-price-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-price-like"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ works for me'; this.dataset.state = '1'} else {this.innerText = '👍 works for me'; this.dataset.state = ''}">
+          👍 works for me
+        </div>
+        <div id="fbd-price-dislike" class="fbd-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ too long'; this.dataset.state = '1'} else {this.innerText = '👎 too long'; this.dataset.state = ''}">
+          👎 too high
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-projects"
-      style="position: absolute; top: 250px; left: 50px"
-      onmouseover="this.querySelector('#fbd-projects-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-projects-container').style.display = 'none';"
-    >
-      <div id="fbd-projects-container" class="fbd-container">
-        <div id="fbd-projects-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-projects-question" class="fbd-question">Projects with real companies are...</div>
-        <div id="fbd-projects-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-projects-like"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ important for me'; this.dataset.state = '1'} else {this.innerText = '👍 important for me'; this.dataset.state = ''}"
-          >
-            👍 important for me
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-projects-dislike"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ not important'; this.dataset.state = '1'} else {this.innerText = '👎 not important'; this.dataset.state = ''}"
-          >
-            👎 not important
-          </div>
+  <div class="feedback-dot" id="feedback-dot-projects" style="position: absolute; top: 250px; left: 50px"
+    onmouseover="this.querySelector('#fbd-projects-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-projects-container').style.display = 'none';">
+    <div id="fbd-projects-container" class="fbd-container">
+      <div id="fbd-projects-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-projects-question" class="fbd-question">Projects with real companies are...</div>
+      <div id="fbd-projects-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-projects-like"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ important for me'; this.dataset.state = '1'} else {this.innerText = '👍 important for me'; this.dataset.state = ''}">
+          👍 important for me
+        </div>
+        <div class="fbd-dislike" id="fbd-projects-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ not important'; this.dataset.state = '1'} else {this.innerText = '👎 not important'; this.dataset.state = ''}">
+          👎 not important
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-codereview"
-      style="position: absolute; top: 350px; left: 50px"
-      onmouseover="this.querySelector('#fbd-codereview-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-codereview-container').style.display = 'none';"
-    >
-      <div id="fbd-codereview-container" class="fbd-container">
-        <div id="fbd-codereview-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-codereview-question" class="fbd-question">Detailed code review is...</div>
-        <div id="fbd-codereview-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-codereview-like"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ important for me'; this.dataset.state = '1'} else {this.innerText = '👍 important for me'; this.dataset.state = ''}"
-          >
-            👍 important for me
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-codereview-dislike"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ not important'; this.dataset.state = '1'} else {this.innerText = '👎 not important'; this.dataset.state = ''}"
-          >
-            👎 not important
-          </div>
+  <div class="feedback-dot" id="feedback-dot-codereview" style="position: absolute; top: 350px; left: 50px"
+    onmouseover="this.querySelector('#fbd-codereview-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-codereview-container').style.display = 'none';">
+    <div id="fbd-codereview-container" class="fbd-container">
+      <div id="fbd-codereview-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-codereview-question" class="fbd-question">Detailed code review is...</div>
+      <div id="fbd-codereview-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-codereview-like"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ important for me'; this.dataset.state = '1'} else {this.innerText = '👍 important for me'; this.dataset.state = ''}">
+          👍 important for me
         </div>
-        <div id="fbd-codereview-extra" class="fbd-extra" title="code review">
-          <a class="fbd-extra-link" target="_blank" href="https://www.practicum.blog/posts/what-is-code-review-how-it-works-and-how-to-ace-your-next-review">🤔 What is a "code review"?</a>
+        <div class="fbd-dislike" id="fbd-codereview-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ not important'; this.dataset.state = '1'} else {this.innerText = '👎 not important'; this.dataset.state = ''}">
+          👎 not important
+        </div>
+      </div>
+      <div id="fbd-codereview-extra" class="fbd-extra" title="code review">
+        <a class="fbd-extra-link" target="_blank"
+          href="https://www.practicum.blog/posts/what-is-code-review-how-it-works-and-how-to-ace-your-next-review">🤔
+          What is a "code review"?</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback-dot" id="feedback-dot-schedule" style="position: absolute; top: 450px; left: 50px"
+    onmouseover="this.querySelector('#fbd-schedule-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-schedule-container').style.display = 'none';">
+    <div id="fbd-schedule-container" class="fbd-container">
+      <div id="fbd-schedule-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-schedule-question" class="fbd-question">What do you think about our schedule?</div>
+      <div id="fbd-schedule-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-schedule-like"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ works for me'; this.dataset.state = '1'} else {this.innerText = '👍 works for me'; this.dataset.state = ''}">
+          👍 works for me
+        </div>
+        <div class="fbd-dislike" id="fbd-schedule-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ I need something self-paced'; this.dataset.state = '1'} else {this.innerText = '👎 I need something self-paced'; this.dataset.state = ''}">
+          👎 I need something self-paced
+        </div>
+        <div class="fbd-dislike" id="fbd-schedule-dislike-2"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ I need a strict schedule'; this.dataset.state = '1'} else {this.innerText = '👎 I need a strict schedule'; this.dataset.state = ''}">
+          👎 I need a strict schedule
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-schedule"
-      style="position: absolute; top: 450px; left: 50px"
-      onmouseover="this.querySelector('#fbd-schedule-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-schedule-container').style.display = 'none';"
-    >
-      <div id="fbd-schedule-container" class="fbd-container">
-        <div id="fbd-schedule-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-schedule-question" class="fbd-question">What do you think about our schedule?</div>
-        <div id="fbd-schedule-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-schedule-like"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ works for me'; this.dataset.state = '1'} else {this.innerText = '👍 works for me'; this.dataset.state = ''}"
-          >
-            👍 works for me
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-schedule-dislike"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ I need something self-paced'; this.dataset.state = '1'} else {this.innerText = '👎 I need something self-paced'; this.dataset.state = ''}"
-          >
-            👎 I need something self-paced
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-schedule-dislike-2"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ I need a strict schedule'; this.dataset.state = '1'} else {this.innerText = '👎 I need a strict schedule'; this.dataset.state = ''}"
-          >
-            👎 I need a strict schedule
-          </div>
+  <div class="feedback-dot" id="feedback-dot-syllabus" style="position: absolute; top: 550px; left: 50px"
+    onmouseover="this.querySelector('#fbd-syllabus-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-syllabus-container').style.display = 'none';">
+    <div id="fbd-syllabus-container" class="fbd-container">
+      <div id="fbd-syllabus-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-syllabus-question" class="fbd-question">What do you think about our syllabus?</div>
+      <div id="fbd-syllabus-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-syllabus-like"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ looks great'; this.dataset.state = '1'} else {this.innerText = '👍 looks great'; this.dataset.state = ''}">
+          👍 looks great
+        </div>
+        <div class="fbd-dislike" id="fbd-syllabus-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ it’s missing topics that I need'; this.dataset.state = '1'} else {this.innerText = '👎 it’s missing topics that I need'; this.dataset.state = ''}">
+          👎 it’s missing topics that I need
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-syllabus"
-      style="position: absolute; top: 550px; left: 50px"
-      onmouseover="this.querySelector('#fbd-syllabus-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-syllabus-container').style.display = 'none';"
-    >
-      <div id="fbd-syllabus-container" class="fbd-container">
-        <div id="fbd-syllabus-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-syllabus-question" class="fbd-question">What do you think about our syllabus?</div>
-        <div id="fbd-syllabus-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-syllabus-like"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ looks great'; this.dataset.state = '1'} else {this.innerText = '👍 looks great'; this.dataset.state = ''}"
-          >
-            👍 looks great
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-syllabus-dislike"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ it’s missing topics that I need'; this.dataset.state = '1'} else {this.innerText = '👎 it’s missing topics that I need'; this.dataset.state = ''}"
-          >
-            👎 it’s missing topics that I need
-          </div>
+  <div class="feedback-dot" id="feedback-dot-employment" style="position: absolute; top: 650px; left: 50px"
+    onmouseover="this.querySelector('#fbd-employment-container').style.display = 'flex';"
+    onmouseout="this.querySelector('#fbd-employment-container').style.display = 'none';">
+    <div id="fbd-employment-container" class="fbd-container">
+      <div id="fbd-employment-ask" class="fbd-ask">Help us make the product better</div>
+      <div id="fbd-employment-question" class="fbd-question">Will you need help finding a job?</div>
+      <div id="fbd-employment-answers" class="fbd-answers">
+        <div class="fbd-like" id="fbd-employment-like"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ yes, definitely!'; this.dataset.state = '1'} else {this.innerText = '👍 yes, definitely!'; this.dataset.state = ''}">
+          👍 yes, definitely!
+        </div>
+        <div class="fbd-dislike" id="fbd-employment-dislike"
+          onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ no, thanks'; this.dataset.state = '1'} else {this.innerText = '👎 no, thanks'; this.dataset.state = ''}">
+          👎 no, thanks
         </div>
       </div>
     </div>
+  </div>
+</body>
 
-    <div
-      class="feedback-dot"
-      id="feedback-dot-employment"
-      style="position: absolute; top: 650px; left: 50px"
-      onmouseover="this.querySelector('#fbd-employment-container').style.display = 'flex';"
-      onmouseout="this.querySelector('#fbd-employment-container').style.display = 'none';"
-    >
-      <div id="fbd-employment-container" class="fbd-container">
-        <div id="fbd-employment-ask" class="fbd-ask">Help us make the product better</div>
-        <div id="fbd-employment-question" class="fbd-question">Will you need help finding a job?</div>
-        <div id="fbd-employment-answers" class="fbd-answers">
-          <div
-            class="fbd-like"
-            id="fbd-employment-like"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ yes, definitely!'; this.dataset.state = '1'} else {this.innerText = '👍 yes, definitely!'; this.dataset.state = ''}"
-          >
-            👍 yes, definitely!
-          </div>
-          <div
-            class="fbd-dislike"
-            id="fbd-employment-dislike"
-            onclick="this.classList.toggle('fbd-bold'); if (!this.dataset.state) {this.innerText = '✅ no, thanks'; this.dataset.state = '1'} else {this.innerText = '👎 no, thanks'; this.dataset.state = ''}"
-          >
-            👎 no, thanks
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
 </html>
