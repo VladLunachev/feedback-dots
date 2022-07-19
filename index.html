@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <div>window navigator languager<div id="lang1"></div></div>
+  <div>navigator languager<div id="lang2"></div></div>
   <style>
     :root {
       --dot-color: #74b855;
@@ -371,6 +373,10 @@
       </div>
     </div>
   </div> -->
+  <script>
+    document.querySelector('#lang1').innerText = window.navigator.languages
+    document.querySelector('#lang2').innerText = navigator.languages
+  </script>
 
 </body>
 
